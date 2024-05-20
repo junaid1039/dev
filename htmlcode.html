@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc by Junaid</title>
+    <style>
+        body {
+            background-color: rgba(0, 138, 115, 0.863);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            height: 450px;
+            width: 300px;
+            border-radius: 10px;
+            background-color: rgba(31, 1, 26, 0.719);
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        #result {
+            height: 100px;
+            width: 300px;
+            font-size: 35px;
+            color: white;
+            background-color: rgba(20, 20, 20, 0.87);
+            border: none;
+            border-radius: 10px;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px black;
+        }
+        .btncont {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .btn {
+            height: 60px;
+            width: 60px;
+            font-size: 30px;
+            color: white;
+            background-color: rgba(22, 3, 3, 0.829);
+            border-radius: 50%;
+            border: none;
+            box-shadow: 5px 5px 10px rgb(29, 24, 24);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: rgba(73, 61, 61, 0.829);
+            font-size: 25px;
+        }
+        .btn-special {
+            color: rgba(255, 187, 60, 0.938);
+        }
+        .btn-clear {
+            color: red;
+        }
+        .btn-equal {
+            width: calc(100% - 10px);
+            grid-column: span 2;
+            border-radius: 40px;
+            background-color: rgba(233, 163, 33, 0.849);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input id="result" readonly/> 
+        <div class="btncont">
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn btn-special" onclick="deleteOne()">del</button>
+            <button class="btn btn-special" onclick="addToDisplay('%')">%</button>
+            <button class="btn btn-special" onclick="addToDisplay('/')">/</button>
+            <button class="btn" onclick="addToDisplay('7')">7</button>
+            <button class="btn" onclick="addToDisplay('8')">8</button>
+            <button class="btn" onclick="addToDisplay('9')">9</button>
+            <button class="btn btn-special" onclick="addToDisplay('*')">x</button>
+            <button class="btn" onclick="addToDisplay('4')">4</button>
+            <button class="btn" onclick="addToDisplay('5')">5</button>
+            <button class="btn" onclick="addToDisplay('6')">6</button>
+            <button class="btn btn-special" onclick="addToDisplay('-')">-</button>
+            <button class="btn" onclick="addToDisplay('1')">1</button>
+            <button class="btn" onclick="addToDisplay('2')">2</button>
+            <button class="btn" onclick="addToDisplay('3')">3</button>
+            <button class="btn btn-special" onclick="addToDisplay('+')">+</button>
+            <button class="btn" onclick="addToDisplay('0')">0</button>
+            <button class="btn" onclick="addToDisplay('.')">.</button>
+            <button class="btn btn-equal" onclick="calculate()">=</button>
+        </div>    
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+
+        function clearDisplay() {
+            result.value = '';
+        }
+
+        function deleteOne() {
+            result.value = result.value.slice(0, -1);
+        }
+
+        function addToDisplay(value) {
+            result.value += value;
+        }
+
+        function calculate() {
+            try {
+                result.value = eval(result.value);
+            } catch {
+                result.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
